@@ -6,7 +6,8 @@ class Alacritty < Formula
   url "https://some.dont.provide.archives.example.com",
     :using => :git,
     :revision => "715d4f8be8b80604a0b6a8464e55a60660f810a0"
-  # version ""
+  version "master"
+  revision "715d4f8be8b80604a0b6a8464e55a60660f810a0"
   # sha256 ""
 
   depends_on "cmake" => :build
