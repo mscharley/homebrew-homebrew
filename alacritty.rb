@@ -3,21 +3,21 @@
 class Alacritty < Formula
   desc "A cross-platform, GPU-accelerated terminal emulator"
   homepage "https://github.com/jwilm/alacritty"
-  url "https://some.dont.provide.archives.example.com",
+  url "git@github.com:jwilm/alacritty.git",
     :using => :git,
     :revision => "715d4f8be8b80604a0b6a8464e55a60660f810a0"
   version "master"
-  revision "715d4f8be8b80604a0b6a8464e55a60660f810a0"
+  revision 0
   # sha256 ""
 
   depends_on "cmake" => :build
   depends_on "rust" => :build
+  depends_on "fontconfig"
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
 
-    system "cmake", ".", *std_cmake_args
-    system "make", "install" # if this fails, try separate make/make install steps
+    system "cargo", "build", "--release"
   end
 
   test do
