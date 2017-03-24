@@ -21,6 +21,18 @@ class Alacritty < Formula
     (share / "alacritty").install *Dir["alacritty*.yml"]
   end
 
+  def caveats
+    <<-EOS.undent
+      Although it is possible that the default configuration will work on your
+      system, you will probably end up wanting to customize it anyhow. You can
+      find a copy of the default configuration at:
+
+        #{share / "alacritty"}/alacritty.yml
+
+      You can copy this file to ~/.alacritty.yml and edit as you please.
+    EOS
+  end
+
   test do
     # `test do` will create, run in and delete a temporary directory.
     #
