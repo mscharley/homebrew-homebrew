@@ -1,13 +1,13 @@
 # Documentation: http://docs.brew.sh/Formula-Cookbook.html
 #                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
-
 class Alacritty < Formula
   desc "A cross-platform, GPU-accelerated terminal emulator"
   homepage "https://github.com/jwilm/alacritty"
-  url "mscharley/homebrew"
-  version ""
-  sha256 ""
+  url "https://some.dont.provide.archives.example.com",
+    :using => :git,
+    :revision => "715d4f8be8b80604a0b6a8464e55a60660f810a0"
+  # version ""
+  # sha256 ""
 
   depends_on "cmake" => :build
   depends_on "rust" => :build
