@@ -27,7 +27,7 @@ class Alacritty < Formula
       system, you will probably end up wanting to customize it anyhow. You can
       find a copy of the default configuration at:
 
-        /usr/local/share/alacritty/alacritty.yml
+        /usr/local/share/alacritty/alacritty_macos.yml
 
       You can copy this file to ~/.alacritty.yml and edit as you please.
     EOS
