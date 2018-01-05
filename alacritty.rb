@@ -3,7 +3,7 @@
 class Alacritty < Formula
   desc "A cross-platform, GPU-accelerated terminal emulator"
   homepage "https://github.com/jwilm/alacritty"
-  head "git@github.com:jwilm/alacritty.git", using: :git
+  head "https://github.com/jwilm/alacritty.git", using: :git
   # version "0.1.0"
   # revision 0
   # sha256 ""
