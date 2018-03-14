@@ -9,20 +9,30 @@ class Alacritty < Formula
   # sha256 ""
 
   depends_on "cmake" => :build
-  depends_on "rust" => :build
   depends_on "fontconfig"
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
 
+    # Setup some temporary working folders to download tools into.
+    ENV["CARGO_HOME"] = buildpath/"opt/cargo"
+    ENV["RUSTUP_HOME"] = buildpath/"opt/rustup"
+
+    # Install a stable Rust installation.
+    system 'curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path'
+    ENV.append_path "PATH", buildpath/"opt/rustup/toolchains/stable-x86_64-apple-darwin/bin/"
+
+    # Build the app!
     system "make", "app"
 
-    bin.install "target/release/osx/Alacritty.app"
+    # Grab the bits we care about.
+    (prefix / "Applications").install "target/release/osx/Alacritty.app"
+    bin.install "target/release/alacritty"
     (share / "alacritty").install *Dir["alacritty*.yml"]
   end
 
   def caveats
-    <<-EOS.undent
+    <<~EOS
       Although it is possible that the default configuration will work on your
       system, you will probably end up wanting to customize it anyhow. You can
       find a copy of the default configuration at:
