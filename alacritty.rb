@@ -4,9 +4,10 @@ class Alacritty < Formula
   desc "A cross-platform, GPU-accelerated terminal emulator"
   homepage "https://github.com/jwilm/alacritty"
   head "https://github.com/jwilm/alacritty.git", using: :git
-  # version "0.1.0"
+  version "0.2.1"
+  url "https://github.com/jwilm/alacritty/archive/v0.2.1.tar.gz"
   # revision 0
-  # sha256 ""
+  sha256 "d335f09ba914faf8d8b2ba91a67672aab3acd1a3bb1528ec3d9339381697f6a1"
 
   depends_on "cmake" => :build
   depends_on "fontconfig"
@@ -27,11 +28,7 @@ class Alacritty < Formula
 
     # Install a stable Rust installation.
     system 'curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path'
-    if build.without? "cache"
-      ENV.append_path "PATH", *Dir[buildpath/"opt/rustup/toolchains/*/bin/"]
-    else
-      ENV.append_path "PATH", *Dir["/usr/local/var/cache/rustup/toolchains/*/bin/"]
-    end
+    ENV.append_path "PATH", *Dir[ENV["RUSTUP_HOME"] + "/toolchains/*/bin/"]
 
     # Build the app!
     system "make", "app"
@@ -39,7 +36,7 @@ class Alacritty < Formula
     # Grab the bits we care about.
     (prefix / "Applications").install "target/release/osx/Alacritty.app"
     bin.install "target/release/alacritty"
-    (share / "alacritty").install *Dir["alacritty*.yml"]
+    (share / "alacritty").install *Dir["alacritty*.yml"], "alacritty.info"
   end
 
   def caveats
@@ -51,6 +48,11 @@ class Alacritty < Formula
         /usr/local/share/alacritty/alacritty_macos.yml
 
       You can copy this file to ~/.alacritty.yml and edit as you please.
+
+      For the best experience, you should install/update alacritty's terminfo
+      file after each update. You can do so by running the following command:
+
+        sudo tic -r alacritty,alacritty-direct /usr/local/share/alacritty/alacritty.info
 
       WARNING: This formula can't install into /Applications, the application
       has been installed to:
