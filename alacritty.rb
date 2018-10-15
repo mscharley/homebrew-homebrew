@@ -52,7 +52,7 @@ class Alacritty < Formula
       For the best experience, you should install/update alacritty's terminfo
       file after each update. You can do so by running the following command:
 
-        sudo tic -r alacritty,alacritty-direct /usr/local/share/alacritty/alacritty.info
+        sudo tic -e alacritty,alacritty-direct /usr/local/share/alacritty/alacritty.info
 
       WARNING: This formula can't install into /Applications, the application
       has been installed to:
