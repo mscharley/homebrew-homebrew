@@ -4,10 +4,10 @@ class Alacritty < Formula
   desc "A cross-platform, GPU-accelerated terminal emulator"
   homepage "https://github.com/jwilm/alacritty"
   head "https://github.com/jwilm/alacritty.git", using: :git
-  version "0.2.7"
-  url "https://github.com/jwilm/alacritty/archive/v0.2.7.tar.gz"
+  version "0.2.9"
+  url "https://github.com/jwilm/alacritty/archive/v0.2.9.tar.gz"
   # revision 0
-  sha256 "2d12fd880174fc6530df3718725395e95682444fae04402f37f67a03ba1d5796"
+  sha256 "0261d427bd93262403c3acdda6ebcb06c6a37062124e96fe2b29ff3104cb3089"
 
   depends_on "cmake" => :build
   depends_on "fontconfig"
