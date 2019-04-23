@@ -4,10 +4,10 @@ class Alacritty < Formula
   desc "A cross-platform, GPU-accelerated terminal emulator"
   homepage "https://github.com/jwilm/alacritty"
   head "https://github.com/jwilm/alacritty.git", using: :git
-  version "0.2.9"
-  url "https://github.com/jwilm/alacritty/archive/v0.2.9.tar.gz"
+  version "0.3.2"
+  url "https://github.com/jwilm/alacritty/archive/v0.3.2.tar.gz"
   # revision 0
-  sha256 "0261d427bd93262403c3acdda6ebcb06c6a37062124e96fe2b29ff3104cb3089"
+  sha256 "e2bc5323d505d9d487b2fdfc29f82a77e18b17f92de3988742950471808272f7"
 
   depends_on "cmake" => :build
   depends_on "fontconfig"
@@ -32,11 +32,15 @@ class Alacritty < Formula
 
     # Build the app!
     system "make", "app"
+    system "gzip -c extra/alacritty.man > extra/alacritty.1.gz"
 
     # Grab the bits we care about.
     (prefix / "Applications").install "target/release/osx/Alacritty.app"
     bin.install "target/release/alacritty"
-    (share / "alacritty").install *Dir["alacritty*.yml"], "alacritty.info"
+    (share / "alacritty").install *Dir["alacritty*.yml"], "extra/alacritty.info"
+    (share / "man" / "man1").install "extra/alacritty.1.gz"
+    (share / "zsh-completions").install "extra/completions/_alacritty"
+    (share / "bash-completions" / "completions").install "extra/completions/alacritty.bash"
   end
 
   def caveats
